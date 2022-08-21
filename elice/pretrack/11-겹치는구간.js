@@ -1,20 +1,46 @@
+// function solution(a, b) {
+
+//   a = a.split(',');
+//   b = b.split(',');
+
+//   a[0] = a[0] - (a[1] - a[0]);
+//   b[0] = b[0] - (b[1] - b[0]);
+
+//   console.log(a[1])
+
+//   if((a[0] < b[0] && a[1] < b[0]) || (b[0] < a[0] && b[1] < a[0])) return 0;
+
+//   let start = a[0] > b[0] ? a[0] : b[0];
+//   let end = a[1] < b[1] ? a[1] : b[1];
+
+// return end - start;
+// }
+
+
+
 function solution(a, b) {
+  let arrA = [];
+  let arrB = [];
 
-    a = a.split(',').map(Number);
-    b = b.split(',').map(Number);
+  a = a.split(',').map(Number);
+  b = b.split(',').map(Number);
 
-    a[0] = a[0] - (a[1] - a[0]);
-    b[0] = b[0] - (b[1]- b[0]);
+  for (let i = a[0] - (a[1] - a[0]); i <= a[1]; i++) {
+    arrA.push(i);
+  }
 
-    console.log(a, b)
+  for (let i = b[0] - (b[1] - b[0]); i <= b[1]; i++) {
+    arrB.push(i);
+  }
 
-    if(a[1] < b[0]) return 0;
+  let answer = arrA.filter(i => arrB.includes(i)).length - 1;
 
-    let newA = a[0] > b[0] ? a[0] : b[0];
-    let newB = a[1] < b[1] ? a[1] : b[1];
+  if (answer <= 0) return 0;
 
-
-  return newB - newA;
+  return answer;
 }
 
-console.log(solution(('2,6'),('4,8')));
+console.log(solution(('4, 10'),('2, 4')));
+// -2 10
+// 0 4
+// 4
