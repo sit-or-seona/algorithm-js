@@ -5,22 +5,20 @@ const graph = {'E': ['D', 'A'],
          'C': ['A'],
          'D': ['E','F']};
 
-         function dfs(graph, start){
-            let visited = [];
-            let stack = [start];
-          
-            while (stack.length !== 0){
-              let n = stack.pop();
-              if (!visited.includes(n)){
-                visited.push(n);
-                let sub = graph[n].filter(x => !visited.includes(x));
-                for(let i of sub) {
-                  stack.push(i);
-                }
-              }
-            }
-            return visited;
-          }
+function dfs(graph, start){
+  let answer = [];
+  let stack = [start];
+
+  while(stack.length !== 0){
+    let pop = stack.pop();
+    if(!answer.includes(pop)) answer.push(pop);
+    let sub = graph[pop].filter(i => !answer.includes(i));
+    for(let i of sub){
+      stack.push(i);
+    }
+  }
+  return answer;
+}
           
           
-          console.log(dfs(graph, 'E'));
+console.log(dfs(graph, 'E'));
