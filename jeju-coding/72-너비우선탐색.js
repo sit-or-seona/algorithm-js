@@ -17,7 +17,7 @@ function bfs (graph, start) {
             queue.push(i);
         }
     }
-    return answer;
+    return answer.join().replace(/,/g, " ");
 }
 
 console.log(bfs(graph, 'E'));
