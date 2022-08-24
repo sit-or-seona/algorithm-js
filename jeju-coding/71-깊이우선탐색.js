@@ -17,7 +17,7 @@ function dfs(graph, start){
       stack.push(i);
     }
   }
-  return answer;
+  return answer.join().replace(/,/g, " ");
 }
           
           
