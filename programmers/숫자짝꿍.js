@@ -10,8 +10,10 @@ function solution(X, Y) {
         }
         
     }
-    if(answer.length < 1) return "-1"
-    return !!answer.replace(/0/g, '') ? answer : answer = "0";
+    if(answer === '') return "-1"
+    if(answer*1 === 0) return "0"
+    
+    return answer;
 }
 
 console.log(solution("12321", "42531"))
