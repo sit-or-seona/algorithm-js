@@ -2,28 +2,24 @@ function solution(babbling) {
     let answer = 0;
     for(let i of babbling) {
         let check = i
-                    .replace(/aya/, '0')
-                    .replace(/ye/, '0')
-                    .replace(/woo/, '0')
-                    .replace(/ma/, '0');
-        if(check*1 === 0) answer++;
+                    .replace(/aya/g, 'A')
+                    .replace(/ye/g, 'B')
+                    .replace(/woo/g, 'C')
+                    .replace(/ma/g, 'D');
+        if(check.toUpperCase() !== check) {
+            continue;
+        } else {
+            if(!(
+                check.includes('AA') || 
+                check.includes('BB') || 
+                check.includes('CC') || 
+                check.includes('DD')
+                )){
+                answer++;
+            }
+        }
     }
     return answer;
 }
 
-// function solution(babbling) {
-//     let answer = 0;
-//     const words = ['aya', 'ye', 'woo', 'ma'];
-    
-//     for(let i of babbling) {
-//         for(let j of words) {
-//             if(i.includes(j)) {
-//                 i = i.slice(0, i.indexOf(j)) + i.slice(i.indexOf(j) + j.length);
-//             }
-//         }
-//         if(!i) answer++;
-//     }
-//     return answer;
-// }
-
-console.log(solution(["ayaye", "uuu", "yeye", "yemawoo", "ayaayaa"]))
+console.log(solution(["ayaye", "uuu", "yeye", "yemawoo", "ayamaaya"]))
