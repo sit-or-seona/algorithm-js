@@ -1,13 +1,14 @@
 function solution(ingredient) {
     let result = 0;
-    let left = ingredient.join('');
+    let arr = [];
+    for (let i of ingredient) {
+        arr.push(i);
 
-    while (left.length >= 4) {
-        if(left.match(/1231/)) {
-            result++;
-            left = left.replace(/1231/, '');
-        } else {
-            break;
+        if(arr.length >= 4) {
+            if(arr[arr.length-4] === 1 && arr[arr.length-3] === 2 && arr[arr.length-2] === 3 && arr[arr.length-1] === 1) {
+                result++;
+                arr.splice(-4, 4);
+            }
         }
     }
     return result;
