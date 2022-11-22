@@ -1,39 +1,39 @@
 function solution(number, limit, power) {
-    // let answer = 0;
-    // for(let i = 1; i <= number; i++){
-    //     let count = 0;
-    //     for(let j = 1; j <= Math.sqrt(i); j++){
-    //         if(i === 1) count++;
-    //         if(i % j === 0){
-    //             count+=2;
-    //             if(count > limit){
-    //                 count = power;
-    //                 break;
-    //             }
-    //         }
-    //     }
-    //     answer += count;
-    // }
-    // return answer;
+    // 1
+    let answer = 0;
+    for(let i = 1; i <= number; i++){
+        let count = 0;
+        for(let j = 1; j <= Math.sqrt(i); j++){
+            if(i % j === 0){
+                if(j * j === i){
+                    count++;
+                } else {
+                    count += 2;
+                }
+            }
+        }
+        answer += count > limit ? power : count;
+    }
+    return answer;
+
     
-    
-    
+    //2
     return [...Array(number)]
             .map((v, i) => {
                 v = i + 1;
                 let count = 0;
-                for(let j = 1; j <= v; j++){
+                for(let j = 1; j <= Math.sqrt(v); j++){
                     if(v % j === 0){
-                        count+=2;
-                        if(count > limit){
-                            count = power;
-                            break;
+                        if(j ** 2 === v){
+                            count++;
+                        } else {
+                            count += 2;
                         }
                     }
                 }
-                return v = count;
+                return count > limit ? power : count;
             })
-            .reduce((acc, cur) => acc + cur, 0)
+            .reduce((acc, cur) => acc + cur, 0);
 }
 
-console.log(solution(5, 3, 2));
+console.log(solution(10, 3, 2));
