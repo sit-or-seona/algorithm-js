@@ -1,3 +1,4 @@
+// 1
 function solution(name, yearning, photo) {
   const result = [];
 
@@ -11,4 +12,11 @@ function solution(name, yearning, photo) {
     result.push(count);
   }
   return result;
+}
+
+// 2
+function solution(name, yearning, photo) {
+  return photo.map((v) =>
+    v.reduce((acc, cur) => (acc += yearning[name.indexOf(cur)] ?? 0), 0)
+  );
 }
