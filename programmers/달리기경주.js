@@ -7,3 +7,18 @@ function solution(players, callings) {
   });
   return players;
 }
+
+// 런타임 에러 case 축소
+function solution(players, callings) {
+  const obj = { ...players };
+
+  callings.forEach((v) => {
+    let idx = players.indexOf(v);
+    [obj[idx - 1], obj[idx]] = [obj[idx], obj[idx - 1]];
+
+    players[idx] = obj[idx];
+    players[idx - 1] = obj[idx - 1];
+  });
+
+  return players;
+}
