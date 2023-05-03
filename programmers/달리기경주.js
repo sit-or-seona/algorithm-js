@@ -22,3 +22,27 @@ function solution(players, callings) {
 
   return players;
 }
+
+// 객체를 활용하여 시간 복잡도 축소 -> Success
+function solution(players, callings) {
+  let obj = {};
+  players.forEach((v, i) => (obj[v] = i));
+  callings.forEach((v) => {
+    [players[obj[v] - 1], players[obj[v]]] = [
+      players[obj[v]],
+      players[obj[v] - 1],
+    ];
+    obj[players[obj[v]]]++;
+    obj[v]--;
+  });
+
+  return players;
+}
+
+console.log(
+  solution(
+    ["mumu", "soe", "poe", "kai", "mine"],
+    ["kai", "kai", "mine", "mine"]
+  )
+);
+// ["mumu", "kai", "mine", "soe", "poe"]
